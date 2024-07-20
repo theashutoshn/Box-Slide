@@ -568,7 +568,7 @@ MonoBehaviour:
   - {fileID: 2016373060852502468}
   maxSpawnPoints: 3
   spawnedTilesCount: 0
-  currentLevel: 1
+  currentLevel: 0
 --- !u!4 &590687995
 Transform:
   m_ObjectHideFlags: 0

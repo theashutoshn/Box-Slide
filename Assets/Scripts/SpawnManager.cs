@@ -7,26 +7,27 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _boxToSpawn;
-    [SerializeField]
-    private Transform[] _boxTile;
+    
+    public Transform[] _boxTile;
     //private bool _isSpawned = false;
     [SerializeField]
     private List<Transform[]> baseTilesPerLevel = new List<Transform[]>();
 
-    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+    public HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
 
-    [SerializeField]
-    private int maxSpawnPoints;
+    
+    public int maxSpawnPoints;
 
     public int spawnedTilesCount;
 
-    //private LevelManager levelManager;
-
     public int currentLevel = 0;
+
+    
+
+
     void Start()
     {
         
-        //levelManager = GetComponent<LevelManager>();
         InitializeSpawnPoints();
     }
 
@@ -85,7 +86,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    void InitializeSpawnPoints()
+    public void InitializeSpawnPoints()
     {
         List<Transform> allSpawnPoints = new List<Transform>(_boxTile);
         List<Transform> selectedSpawnPoints = new List<Transform>();
@@ -108,12 +109,13 @@ public class SpawnManager : MonoBehaviour
 
     public void TileDestroyed()
     {
+
         spawnedTilesCount--;
         if (spawnedTilesCount <= 0)
         {
             currentLevel++;
-            
             ChangeScene();
+            
         }
 
         //spawnedTilesCount--;
@@ -134,7 +136,8 @@ public class SpawnManager : MonoBehaviour
 
     void ChangeScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
 
     }
 }

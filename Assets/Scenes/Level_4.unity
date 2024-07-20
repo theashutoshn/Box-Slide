@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &16383521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   - {fileID: 1438722850}
   maxSpawnPoints: 8
   spawnedTilesCount: 0
-  currentLevel: 4
+  currentLevel: 3
 --- !u!4 &590687995
 Transform:
   m_ObjectHideFlags: 0
@@ -994,6 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d494b6d91c52748b4241b47effc9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homePanel: {fileID: 0}
 --- !u!4 &1091362103
 Transform:
   m_ObjectHideFlags: 0

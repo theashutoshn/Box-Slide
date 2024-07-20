@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         
     }
 
+
     public void DecrementMoves()
     {
         if (movesRemaining > 0)
@@ -46,4 +47,6 @@ public class UIManager : MonoBehaviour
             Debug.LogError("Moves text not assigned in UIManager");
         }
     }
+
+    
 }

@@ -72,29 +72,7 @@ public class BoxMovement : MonoBehaviour
         //Debug.DrawLine(rayOrigin, endpoint * 1, Color.yellow);
         Debug.DrawRay(rayOrigin, rotatedVector, Color.cyan);
 
-        //Debug.DrawLine(rayOrigin, forwardVector * 1, Color.red);
-        //RaycastHit objectHit;
-
-
-        //if (Physics.Raycast(ray, out objectHit))
-        //{
-        //    GameObject hitObject = objectHit.collider.gameObject;
-        //    if (hitObject != this.gameObject)
-        //    {
-        //        Debug.Log("Hit Object: " + hitObject.name); // print out detected object
-        //        if (objectHit.distance <= detectionThreshold)
-        //        {
-        //            isMoving = false; // bool to deactivate MoveObject because an object is detected
-        //        }
-
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.Log("No Object Detected");
-        //}
-        //----------------------------------------------------------------------------------------
-
+        
         // Checking mouse input
         if (Input.GetMouseButtonDown(0))
         {
@@ -119,23 +97,6 @@ public class BoxMovement : MonoBehaviour
         {
             MoveObject(); //ray.direction is the direction of the rotatedVector
         }
-
-
-        //if (isMoving == true)
-        //{
-
-        //    // Check if we've reached the maximum move distance
-        //    if (Vector3.Distance(transform.position, startPosition) >= maxDistance)
-        //    {
-        //        isMoving = false;
-        //    }
-        //    else
-        //    {
-        //        // Object move funtion here.
-        //        MoveObject(rotatedVector); //ray.direction is the direction of the rotatedVector
-        //    }
-
-        //}
 
 
         // Destroy the game object if it has moved beyond the maximum distance

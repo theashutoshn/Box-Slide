@@ -687,7 +687,7 @@ MonoBehaviour:
   - {fileID: 1284170877}
   - {fileID: 1438722850}
   levelParent: {fileID: 930246786}
-  maxSpawnPoints: 15
+  maxSpawnPoints: 10
   spawnedTilesCount: 0
   currentLevel: 2
 --- !u!4 &590687995

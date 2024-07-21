@@ -32,7 +32,7 @@ public class BoxMovement : MonoBehaviour
     void Awake()
     {
         randomNumber = Random.Range(1, 7);
-        randomNumberColor = Random.Range(1, 7);
+        randomNumberColor = Random.Range(0, 5);
         startPosition = rayOrigin; // Store the starting position
 
         spawnManager = FindObjectOfType<SpawnManager>();
@@ -43,7 +43,7 @@ public class BoxMovement : MonoBehaviour
     {
         CalculateRotatedVector(); // Initializing in start becasue we need the updated position of the rotatedVector once the script is started after spawnning
 
-        selectedMaterial = material[randomNumberColor - 1];
+        selectedMaterial = material[randomNumberColor];
         this.GetComponent<MeshRenderer>().material = selectedMaterial;
         if (plane != null)
         {

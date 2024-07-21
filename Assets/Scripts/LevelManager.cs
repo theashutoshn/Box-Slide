@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public string[] levelScenes;
     private int currentLevelIndex = 0;
-
+    private int gameEndIndex = 7;
 
     private void Start()
     {
@@ -41,8 +41,11 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            SceneManager.LoadSceneAsync(gameEndIndex, LoadSceneMode.Additive);
             Debug.Log("All levels Completed");
         }
+
+       
     }
 
     public string GetCurrentSceneName()

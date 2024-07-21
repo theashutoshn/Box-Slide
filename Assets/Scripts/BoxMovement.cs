@@ -28,7 +28,7 @@ public class BoxMovement : MonoBehaviour
     Vector3 currentPosition;
 
     private SpawnManager spawnManager;
-    private UIManager uiManager;
+    
     void Awake()
     {
         randomNumber = Random.Range(1, 7);
@@ -36,11 +36,7 @@ public class BoxMovement : MonoBehaviour
         startPosition = rayOrigin; // Store the starting position
 
         spawnManager = FindObjectOfType<SpawnManager>();
-        uiManager = FindObjectOfType<UIManager>();
-        if (uiManager == null)
-        {
-            Debug.LogError("UIManager not found in the scene!");
-        }
+        
     }
 
     private void Start()
@@ -68,7 +64,7 @@ public class BoxMovement : MonoBehaviour
     {
         // Checking if there is any object in the direction of rotatedVector.
 
-        Debug.Log("rotatedVector:" + rotatedVector);
+        //Debug.Log("rotatedVector:" + rotatedVector);
         Vector3 endpoint = rotatedVector * 10f;
         Ray ray = new Ray(rayOrigin, rotatedVector);
         Debug.DrawRay(rayOrigin, forwardVector, Color.green);
@@ -118,7 +114,7 @@ public class BoxMovement : MonoBehaviour
         }
 
         //---------------------------------------------------------------------------------------------
-        if (isMoving == true)
+        if (isMoving && !isResetting)
         {
             MoveObject(); //ray.direction is the direction of the rotatedVector
         }
@@ -162,12 +158,16 @@ public class BoxMovement : MonoBehaviour
             Debug.Log("Object is Clicked: " + hit.collider.name); // if clicked on main object, name will print
             if (hit.collider.gameObject == this.gameObject || hit.collider.gameObject == plane) // only move if the correct object is selected.   //hit.collider.gameObject.CompareTag("HexaTile"
             {
-                isMoving = true; // bool to activate MoveObject 
-                startPosition = transform.position; // resetting the position
-
-                if (uiManager != null)
+                if(!isMoving)
                 {
-                    uiManager.DecrementMoves();
+                    isMoving = true; // bool to activate MoveObject 
+                    startPosition = transform.position; // resetting the position
+
+                    if (UIManager.Instance != null)
+                    {
+                        UIManager.Instance.DecrementMoves();
+                    }
+
                 }
             }
         }
@@ -190,7 +190,7 @@ public class BoxMovement : MonoBehaviour
         {
             if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject != this.plane)
             {
-                Debug.Log("Hit Object: " + hit.collider.name);
+                //Debug.Log("Hit Object: " + hit.collider.name);
                 isMoving = false;
                 //this.transform.position = startPosition; // for non-smooth transition
                 StartCoroutine(SmoothResetPosition()); // to have a smooth transition, we have used Coroutine.
@@ -207,68 +207,6 @@ public class BoxMovement : MonoBehaviour
 
 
     }
-
-    // Bleow is the correct working method
-    //void MoveObject()
-    //{
-    //    Debug.Log("Move Object");
-    //    Vector3 movement = rotatedVector.normalized * 0.64f;
-
-    //    RaycastHit hit;
-    //    Debug.DrawRay(transform.position, rotatedVector * 100f, Color.cyan);
-    //    if (Physics.Raycast(transform.position, rotatedVector, out hit, movement.magnitude))
-    //    {
-
-    //        GameObject hitObject = hit.collider.gameObject;
-    //        if (hitObject != this.gameObject)
-    //        {
-    //            if (hitObject != this.plane)
-    //            {
-
-    //                Debug.Log("Hit Object: " + hitObject.name); // print out detected object
-    //                if (hit.distance <= detectionThreshold)
-    //                {
-    //                    isMoving = false;
-    //                    return;// bool to deactivate MoveObject because an object is detected
-    //                }
-    //            }
-
-    //        }
-
-    //    }
-    //    //this.transform.position = Vector3.Lerp(this.transform.position, rotatedVector.normalized * 0.64f, 0.5f);
-    //    //transform.Translate(movement, Space.World);
-    //    this.transform.position = Vector3.MoveTowards(this.transform.position, rotatedVector * 10f, 0.05f);
-
-    //}
-
-
-
-    // bleow not working corrrectly
-
-    /*void MoveObject()
-    {
-        Vector3 targetLocalPosition = rotatedVector.normalized * 0.64f;
-        Vector3 worldMoveDirection = transform.TransformDirection(rotatedVector);
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, worldMoveDirection, out hit, detectionThreshold))
-        {
-            if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject != this.plane)
-            {
-                isMoving = false;
-                return;
-            }
-        }
-
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetLocalPosition, moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.localPosition, targetLocalPosition) < 0.01f)
-        {
-            isMoving = false;
-        }
-    }
-    */
 
 
     // Coroutine for smooth backward animation

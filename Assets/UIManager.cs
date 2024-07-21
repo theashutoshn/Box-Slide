@@ -8,9 +8,20 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI movesText;
     private int movesRemaining = 10;
-    void Start()
+
+    public static UIManager Instance { get; private set; }
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

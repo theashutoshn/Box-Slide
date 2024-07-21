@@ -15,19 +15,22 @@ public class SpawnManager : MonoBehaviour
 
     public HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
 
-    
+    public Transform levelParent;
+
+
     public int maxSpawnPoints;
 
     public int spawnedTilesCount;
 
     public int currentLevel = 0;
 
+    private LevelManager levelManager;
     
 
 
     void Start()
     {
-        
+        levelManager = FindObjectOfType<LevelManager>();
         InitializeSpawnPoints();
     }
 
@@ -76,6 +79,7 @@ public class SpawnManager : MonoBehaviour
             {
                 Quaternion instantiateQuat = new Quaternion(0, 0, 0, 0);                     //Quaternion(-0.707106829f, 0, 0, 0.707106829f);
                 GameObject go = Instantiate(_boxToSpawn, spawnPosition, instantiateQuat);
+                go.transform.SetParent(levelParent);
                 go.name = randomBaseTile.ToString() + "New Tile";
                 occupiedPositions.Add(spawnPosition);
                 spawnedTilesCount++;
@@ -113,25 +117,10 @@ public class SpawnManager : MonoBehaviour
         spawnedTilesCount--;
         if (spawnedTilesCount <= 0)
         {
-            currentLevel++;
-            ChangeScene();
-            
+            //currentLevel++;
+            //ChangeScene();
+            levelManager.OnLevelComplete();
         }
-
-        //spawnedTilesCount--;
-        //if (spawnedTilesCount <= 0)
-        //{
-        //    currentLevel++;
-        //    if (currentLevel >= baseTilesPerLevel.Count)
-        //    {
-        //        Debug.Log("All levels completed!");
-        //        // Handle game completion (e.g., show end screen, reset game, etc.)
-        //    }
-        //    else
-        //    {
-        //        ChangeScene();
-        //    }
-        //}
     }
 
     void ChangeScene()

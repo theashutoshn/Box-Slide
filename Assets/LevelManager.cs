@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public string[] levleScenes;
+    public string[] levelScenes;
     private int currentLevelIndex = 0;
 
 
@@ -15,17 +15,17 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevel(int index)
     {
-        if(index >= 0 && index < levleScenes.Length)
+        if(index >= 0 && index < levelScenes.Length)
         {
-            SceneManager.LoadSceneAsync(levleScenes[index], LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(levelScenes[index], LoadSceneMode.Additive);
         }
     }
 
     void UnloadLevel(int index)
     {
-        if(index >= 0 && index < levleScenes.Length)
+        if(index >= 0 && index < levelScenes.Length)
         {
-            SceneManager.UnloadSceneAsync(levleScenes[index]);
+            SceneManager.UnloadSceneAsync(levelScenes[index]);
         }
     }
 
@@ -35,13 +35,33 @@ public class LevelManager : MonoBehaviour
 
         currentLevelIndex++;
 
-        if(currentLevelIndex < levleScenes.Length)
+        if(currentLevelIndex < levelScenes.Length)
         {
             LoadLevel(currentLevelIndex);
         }
         else
         {
             Debug.Log("All levels Completed");
+        }
+    }
+
+    public string GetCurrentSceneName()
+    {
+        if(currentLevelIndex >= 0 && currentLevelIndex < levelScenes.Length)
+        {
+            return levelScenes[currentLevelIndex];
+        }
+        return string.Empty;
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        string currentScene = GetCurrentSceneName();
+        if (!string.IsNullOrEmpty(currentScene))
+        {
+            SceneManager.UnloadSceneAsync(currentScene).completed += (AsyncOperation op) => {
+                SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive);
+            };
         }
     }
 }

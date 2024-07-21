@@ -898,7 +898,7 @@ MonoBehaviour:
   - {fileID: 2016373060852502468}
   - {fileID: 1284170877}
   - {fileID: 1438722850}
-  levelParent: {fileID: 0}
+  levelParent: {fileID: 1401051166}
   maxSpawnPoints: 8
   spawnedTilesCount: 0
   currentLevel: 1
@@ -2353,7 +2353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1829848452
 RectTransform:
   m_ObjectHideFlags: 0

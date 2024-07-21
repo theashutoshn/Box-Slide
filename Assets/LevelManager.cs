@@ -56,6 +56,7 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadCurrentLevel()
     {
+        AudioManager.instance.PlayButtonClick();
         string currentScene = GetCurrentSceneName();
         if (!string.IsNullOrEmpty(currentScene))
         {

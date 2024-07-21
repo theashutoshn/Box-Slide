@@ -98,6 +98,7 @@ public class BoxMovement : MonoBehaviour
         // Checking mouse input
         if (Input.GetMouseButtonDown(0))
         {
+            
             HandleInput(Input.mousePosition);
         }
 
@@ -168,6 +169,8 @@ public class BoxMovement : MonoBehaviour
                         UIManager.Instance.DecrementMoves();
                     }
 
+                    AudioManager.instance.PlayBoxTileClick();
+
                 }
             }
         }
@@ -176,6 +179,7 @@ public class BoxMovement : MonoBehaviour
     //claudee MoveObject method updated rotateedVector
     void MoveObject()
     {
+        
         if (isResetting) return;
 
         currentPosition = transform.position;
@@ -190,6 +194,7 @@ public class BoxMovement : MonoBehaviour
         {
             if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject != this.plane)
             {
+                
                 //Debug.Log("Hit Object: " + hit.collider.name);
                 isMoving = false;
                 //this.transform.position = startPosition; // for non-smooth transition

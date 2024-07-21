@@ -32,11 +32,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayActiveScene()
     {
+        AudioManager.instance.PlayButtonClick();
         homePanel.SetActive(false);
     }
 
     public void HomeButton()
     {
+        AudioManager.instance.PlayButtonClick();
         homePanel.SetActive(true);
     }
 }

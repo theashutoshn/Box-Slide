@@ -9,9 +9,13 @@ Welcome to the "BoxRush" game! This strategic puzzle game will test your plannin
 ### Features:
 
 **Strategic Gameplay:** Guide boxes with arrows and clear levels by planning your moves.
+
 **Dynamic Levels:** Randomly spawned boxes increase the challenge as you progress.
+
 **Increasing Difficulty:** Each level presents new obstacles and requires more intricate strategies.
+
 **Quick Play Sessions:** Perfect for short bursts of gameplay or extended puzzle-solving sessions.
+
 **Alpha Testing:** The game is currently in alpha testing.
 
 
